@@ -18,7 +18,8 @@
       "@egghead-digital-garden/markdown": ["libs/markdown/src/index.ts"],
       "@egghead-digital-garden/shared/mdx-elements": [
         "libs/shared/mdx-elements/src/index.ts"
-      ]
+      ],
+      "@egghead-digital-garden/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
