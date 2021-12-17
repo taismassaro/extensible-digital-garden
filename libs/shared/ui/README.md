@@ -1,7 +1,5 @@
-# shared-ui
+# UI Components
 
-This library was generated with [Nx](https://nx.dev).
+React components to build the application's UI.
 
-## Running unit tests
-
-Run `nx test shared-ui` to execute the unit tests via [Jest](https://jestjs.io).
+Run `npx nx storybook shared-ui` to run Storybook for isolated development (available in `localhost:4400`).
