@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "garden": "apps/garden",
-    "garden-e2e": "apps/garden-e2e"
+    "garden-e2e": "apps/garden-e2e",
+    "markdown": "libs/markdown",
   }
 }
