@@ -34,7 +34,7 @@ const mdxComponents = {
   }),
 };
 
-const NOTES_PATH = join(process.cwd(), '_notes');
+const NOTES_PATH = join(process.cwd(), process.env.MARKDOWN_PATH);
 
 export function Note({ frontmatter, html }) {
   return (
