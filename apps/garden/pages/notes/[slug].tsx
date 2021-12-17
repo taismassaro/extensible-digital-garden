@@ -1,5 +1,5 @@
 import { readdirSync } from 'fs';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -36,7 +36,10 @@ const mdxComponents = {
 
 const NOTES_PATH = join(process.cwd(), process.env.MARKDOWN_PATH);
 
-export function Note({ frontmatter, html }) {
+export function Note({
+  frontmatter,
+  html,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className="m-6">
       <article className="prose prose-lg">
@@ -49,11 +52,7 @@ export function Note({ frontmatter, html }) {
   );
 }
 
-export const getStaticProps: GetStaticProps<NoteProps> = async ({
-  params,
-}: {
-  params: PathProps;
-}) => {
+export const getStaticProps = async ({ params }: { params: PathProps }) => {
   // 1. parse markdown content into frontmatter and content
   const { frontmatter, content } = getParsedFileContentBySlug(
     params.slug,
