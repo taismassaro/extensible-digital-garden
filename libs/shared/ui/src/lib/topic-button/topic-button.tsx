@@ -36,9 +36,12 @@ export function TopicButton({ name, onClick }: TopicButtonProps) {
     <button
       className="bg-white pl-4 rounded-lg shadow flex items-center max-w-md min-w-max hover:shadow-md transition-shadow"
       onClick={onClickHandler}
+      data-testid="topic-button"
     >
       <img src={icon} alt={`${name} icon`} className="w-8" />
-      <h1 className="font-bold text-2xl p-4">{name}</h1>
+      <h2 data-testid="topic-name" className="font-bold text-2xl p-4">
+        {name}
+      </h2>
     </button>
   );
 }

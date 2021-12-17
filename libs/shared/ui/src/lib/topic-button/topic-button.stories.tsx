@@ -16,7 +16,11 @@ const Template: Story<TopicButtonProps> = (args) => {
   return (
     <div className="bg-indigo-100 p-20">
       <TopicButton {...args} onClick={(topic: string) => setTopic(topic)} />
-      {topic && <p className="mt-2">{topic} button has been clicked!</p>}
+      {topic && (
+        <p className="mt-2" data-testid="click-result">
+          {topic} button has been clicked!
+        </p>
+      )}
     </div>
   );
 };
