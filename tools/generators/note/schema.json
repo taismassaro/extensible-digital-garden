@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "note",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the note",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Title of the note"
+    },
+    "author": {
+      "type": "string",
+      "description": "The author of the note",
+      "x-prompt": "Author of the note"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "An excerpt that summarizes the note in a single line"
+    }
+  },
+  "required": ["title", "author"]
+}

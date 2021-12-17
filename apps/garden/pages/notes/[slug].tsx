@@ -41,7 +41,7 @@ export function Note({ frontmatter, html }) {
     <div className="m-6">
       <article className="prose prose-lg">
         <h1>{frontmatter.title}</h1>
-        <div>by {frontmatter.author.name}</div>
+        <div>by {frontmatter.author}</div>
       </article>
       <hr />
       <MDXRemote {...html} components={mdxComponents} />
