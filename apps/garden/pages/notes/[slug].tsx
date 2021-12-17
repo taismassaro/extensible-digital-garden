@@ -7,17 +7,20 @@ import {
   getParsedFileContentBySlug,
   renderMarkdown,
 } from '@egghead-digital-garden/markdown';
+import { Video } from '@egghead-digital-garden/shared/mdx-elements';
 import './[slug].module.css';
 
-/* eslint-disable-next-line */
 export interface NoteProps extends ParsedUrlQuery {
   slug: string;
 }
 
+const mdxComponents = {
+  Video,
+};
+
 const NOTES_PATH = join(process.cwd(), '_notes');
 
 export function Note({ frontmatter, html }) {
-  console.log('🚀 ~ file: [slug].tsx ~ line 20 ~ Note ~ html', html);
   return (
     <div className="m-6">
       <article className="prose prose-lg">
@@ -25,7 +28,7 @@ export function Note({ frontmatter, html }) {
         <div>by {frontmatter.author.name}</div>
       </article>
       <hr />
-      <MDXRemote {...html} />
+      <MDXRemote {...html} components={mdxComponents} />
     </div>
   );
 }

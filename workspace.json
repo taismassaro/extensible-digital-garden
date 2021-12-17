@@ -4,5 +4,6 @@
     "garden": "apps/garden",
     "garden-e2e": "apps/garden-e2e",
     "markdown": "libs/markdown",
+    "shared-mdx-elements": "libs/shared/mdx-elements"
   }
 }
