@@ -7,7 +7,7 @@ import {
   getParsedFileContentBySlug,
   renderMarkdown,
 } from '@egghead-digital-garden/markdown';
-import { Video } from '@egghead-digital-garden/shared/mdx-elements';
+import { Video, CustomLink } from '@egghead-digital-garden/shared/mdx-elements';
 import './[slug].module.css';
 
 export interface NoteProps extends ParsedUrlQuery {
@@ -16,6 +16,7 @@ export interface NoteProps extends ParsedUrlQuery {
 
 const mdxComponents = {
   Video,
+  a: CustomLink,
 };
 
 const NOTES_PATH = join(process.cwd(), '_notes');
