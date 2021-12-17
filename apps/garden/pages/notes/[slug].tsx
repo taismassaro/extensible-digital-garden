@@ -2,21 +2,36 @@ import { readdirSync } from 'fs';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import dynamic from 'next/dynamic';
 import {
   getParsedFileContentBySlug,
   renderMarkdown,
 } from '@egghead-digital-garden/markdown';
-import { Video, CustomLink } from '@egghead-digital-garden/shared/mdx-elements';
 import './[slug].module.css';
 
-export interface NoteProps extends ParsedUrlQuery {
+export interface PathProps extends ParsedUrlQuery {
   slug: string;
 }
 
+export interface NoteProps {
+  frontmatter: string;
+  html: MDXRemoteSerializeResult;
+}
+
 const mdxComponents = {
-  Video,
-  a: CustomLink,
+  Video: dynamic(async () => {
+    const { Video } = await import(
+      '@egghead-digital-garden/shared/mdx-elements'
+    );
+    return Video;
+  }),
+  a: dynamic(async () => {
+    const { CustomLink } = await import(
+      '@egghead-digital-garden/shared/mdx-elements'
+    );
+    return CustomLink;
+  }),
 };
 
 const NOTES_PATH = join(process.cwd(), '_notes');
@@ -37,7 +52,7 @@ export function Note({ frontmatter, html }) {
 export const getStaticProps: GetStaticProps<NoteProps> = async ({
   params,
 }: {
-  params: NoteProps;
+  params: PathProps;
 }) => {
   // 1. parse markdown content into frontmatter and content
   const { frontmatter, content } = getParsedFileContentBySlug(
@@ -56,7 +71,7 @@ export const getStaticProps: GetStaticProps<NoteProps> = async ({
   };
 };
 
-export const getStaticPaths: GetStaticPaths<NoteProps> = async (context) => {
+export const getStaticPaths: GetStaticPaths<PathProps> = async (context) => {
   const paths = readdirSync(NOTES_PATH)
     .map((file) => file.replace(/\.mdx?$/, ''))
     .map((slug: string) => ({ params: { slug } }));
